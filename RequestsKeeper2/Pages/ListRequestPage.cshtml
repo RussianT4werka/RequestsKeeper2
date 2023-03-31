@@ -1,0 +1,34 @@
+﻿@page
+@using RequestsKeeper2.Models
+@model RequestsKeeper2.Pages.ListRequestPageModel
+@{
+    ViewData["Title"] = "Просмотр поданых заявок";
+}
+<a class="btn btn-primary" asp-page="/SelectTypeRequest" asp-page-handler="@Model.VisitorSession">Подать заявку</a>
+<h3>Список заявок</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Тип</th>
+            <th>Подразделение</th>
+            <th>Дата начала</th>
+            <th>Дата конца</th>
+            <th>Статус</th>
+            <th>Причина</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach(Request request in @Model.Requests)
+        {
+            <tr>
+                <td>@request.TypeRequest.Name</td>
+                <td>@request.Worker.SubDivision.Name</td>
+                <td>@request.StartDate</td>
+                <td>@request.FinishDate</td>
+                <td>@request.StatusRequest.Name</td>
+                <td>@request.Cause</td>
+            </tr>
+        }
+    </tbody>
+</table>

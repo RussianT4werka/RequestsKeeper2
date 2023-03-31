@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Вход";
+}
+<style>
+    .ali
+    {
+        margin-top:15%;
+        margin-left:25%
+    }
+</style>
+
+<div class="ali">
+    <h3>Вход</h3>
+    <form method="post">
+        <div class="row mb-3">
+            <label class="col-sm-2">Логин</label>
+            <input class="col-sm-5" name="login" />
+        </div>
+        
+        <div class="row mb-3">
+            <label class="col-sm-2">Пароль</label>
+            <input class="col-sm-5" type="password" name="password"/>
+            <label>@Model.Message</label>
+        </div> 
+        
+        <input class="btn btn-primary" type="submit" value="Авторизоваться" />
+        <a class="btn" asp-page="/Registration">Регистрация</a>
+    </form>
+    
+</div>

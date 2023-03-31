@@ -1,0 +1,29 @@
+﻿@page
+@model RequestsKeeper2.Pages.RegistrationModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<style>
+    .ali
+    {
+        margin-top:15%;
+        margin-left:25%
+    }
+</style>
+<div class="ali">
+<h3>Регистрация</h3>
+<form method="post">
+    <div class="row mb-3">
+        <label class="col-sm-2">Электронная почта</label>
+        <input class="col-sm-5" type="email" name="email"/>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2">Пароль</label>
+        <input class="col-sm-5" type="password" name="password" />
+    </div>
+    <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
+    
+</form>
+</div>

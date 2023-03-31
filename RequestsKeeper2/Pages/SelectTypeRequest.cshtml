@@ -1,0 +1,22 @@
+﻿@page
+@model RequestsKeeper2.Pages.SelectTypeRequestModel
+@{
+    ViewData["Title"] = "Выбор типа завки";
+}
+<style>
+    .font
+    {
+        font-size:xx-large;
+        font-weight:bold;
+    }
+</style>
+<heder>
+    <img src="~/Images/Logo.png" height="100" width="100"/>
+    <label class="font">RequestKeeper2</label>
+</heder>
+<div class="text-center">
+    <p>
+        <a class="btn" asp-area="" asp-page="/CreatePersonalRequest" asp-page-handler="@Model.UserSession"><img height="350" width="350" src="~/Images/Visitor.png" alt="Личное посещение"></a>
+        <a class="btn" asp-area="" asp-page="" asp-page-handler="@Model.UserSession"><img height="350" width="350" src="~/Images/Visitorss.png" alt="Групповое посещение"></a>
+    </p>
+</div>

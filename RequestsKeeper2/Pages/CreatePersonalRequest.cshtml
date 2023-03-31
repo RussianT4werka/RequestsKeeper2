@@ -1,0 +1,206 @@
+﻿@page
+@model RequestsKeeper2.Pages.CreatePersonalRequestModel
+@{
+    ViewData["Title"] = "Создание персональной заявки";
+}
+<style>
+    .font
+    {
+        font-size:x-large;
+        font-weight:bold;
+    }
+</style>
+<header>
+    <img src="~/Images/Logo.png" height="60" width="60" />
+    <label class="font">RequestKeeper2</label>
+</header>
+
+<form id="main" enctype="multipart/form-data" method="post">
+<div class="container text-center">
+    <h3>Форма записи на посещение мероприятия</h3>
+<div class="row mt-3">
+    <div class="col-5">
+        <div class="card">
+            <div class="card-header bg-warning">Информация для пропуска</div>
+            <div class="card-body bg-light">
+                <div class="row">
+                    <div class="col">Срок действия заявки:</div>
+                </div>
+                <div class="row">
+                    <div class="col">с*
+                        <input type="date" asp-for="@Model.Request.StartDate"/>
+                    </div><div class="col">по*
+                        <input type="date" asp-for="@Model.Request.FinishDate"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">Цель посещения:</div>
+                    <div class="row">
+                        <input type="text" asp-for="@Model.Request.TargetVisit"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-7">
+        <div class="card">
+            <div class="card-header bg-warning">Принимающая сторона</div>
+            <div class="card-body bg-light">
+                <div class="row">
+                    <div class="row">Подразделение</div>
+                </div>
+                <div class="row">
+                    <select onchange="change()" asp-for="@Model.SubDivisionId" asp-items="@Model.SubDivisionList"></select>
+                </div>
+                <div class="row">
+                    <div class="row">ФИО</div>
+                </div>
+                <div class="row">
+                    <select asp-for="@Model.WorkerId" asp-items="@Model.WorkerList"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col">
+        <div class="card">
+            <div class="card-header bg-warning">Информация о посетителе</div>
+            <div class="card-body bg-light">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label class="row">Фамилия*</label>
+                            </div>
+
+                            <div class="col-8">
+                                <input type="text" asp-for="@Model.Visitor.Surname" class="form-control" value="@Model.Visitor.Surname" />
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label class="row">Имя*</label> 
+                            </div>
+
+                            <div class="col-8">
+                                <input type="text" asp-for="@Model.Visitor.Name" value="@Model.Visitor.Name" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label class="row">Отчество</label> 
+                            </div>
+
+                            <div class="col-8">
+                                <input type="text" asp-for="@Model.Visitor.Patronymic" value="@Model.Visitor.Patronymic" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label class="row">Телефон</label> 
+                            </div>
+
+                            <div class="col-8">
+                                <input type="text" asp-for="@Model.Visitor.PhoneNumber" value="@Model.Visitor.PhoneNumber" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label class="row">E-mail*</label> 
+                            </div>
+
+                            <div class="col-8">
+                                <input type="text" asp-for="@Model.Visitor.Email" value="@Model.Visitor.Email" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="row mb-1">
+                            <div class="col-4">
+                                <label class="row">Организация</label>
+                            </div>
+
+                            <div class="col-8">
+                                <input type="text" asp-for="@Model.Visitor.Organisation" value="@Model.Visitor.Organisation" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-4">
+                                <label class="row">Примечание</label> 
+                            </div>
+
+                            <div class="col-8">
+                                <input type="text" asp-for="@Model.Visitor.Note" value="@Model.Visitor.Note" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-4">
+                                <label class="row">Дата рождения</label> 
+                            </div>
+
+                            <div class="col-8">
+                                <input type="date" asp-for="@Model.Visitor.DoB"  class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-4">
+                                <label class="row" >Серия*</label> 
+                            </div>
+
+                            <div class="col-8">
+                                <input type="text" asp-for="@Model.Visitor.PassportSeries" value="@Model.Visitor.PassportSeries" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-4">
+                                <label class="row">Номер*</label> 
+                            </div>
+
+                            <div class="col-8">
+                                <input type="text" asp-for="@Model.Visitor.PassportNumber" value="@Model.Visitor.PassportNumber" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <img src="" />
+                        <input class="row mt-3 btn btn-outline-warning" type="file" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header bg-warning">Прикреплямые документы</div>
+            <div class="card-body bg-light">
+                <input class="btn" type="file" value="Прикрепить файл" name="doc"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="card-body indent">
+            <input class="btn fontgrey" type="submit" value="Очистить форму" />
+            <input class="btn btn-outline-warning" name="filldata" type="submit" value="Оформить заявку" />
+                <div class="row">
+                    <label>@Model.Message</label>
+                </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</form>
+<script>
+    function change(){
+        document.querySelector('#main').submit();
+    }
+</script>
